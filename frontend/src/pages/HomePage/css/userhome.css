@@ -1,0 +1,45 @@
+body{
+    margin:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fe;
+}
+
+/* dark light mode */
+
+input[type="checkbox"]{
+    visibility: hidden;
+    display: none;
+  }
+  .check{
+    position: relative;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+    width: 40px;
+    height: 20px;
+    background: #092c3e;
+    cursor: pointer;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: ease-in 0.5s;
+  }
+  .check::before{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+  }
+  input[type="checkbox"]:checked ~ .check{
+    background: #fff;
+  }
+  input[type="checkbox"]:checked ~ .check::before{
+    background: #092c3e;
+    transform: translateX(20px);
+  }
