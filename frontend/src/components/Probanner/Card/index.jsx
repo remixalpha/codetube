@@ -2,7 +2,7 @@ function Card(props) {
   const { variant, extra, children, ...rest } = props;
   return (
     <div
-      className={`!z-5 group relative flex flex-col rounded-[20px]  bg-white hover:scale-102  hover:shadow-lg  transition-all duration-300  ${extra}`}
+      className={`!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500  ${extra}`}
       {...rest}
     >
       {children}

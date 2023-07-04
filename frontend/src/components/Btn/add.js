@@ -1,4 +1,4 @@
-import Widget from "../widget/Widget3";
+import Widget from "../widget/Widget";
 import { MdAdd } from "react-icons/md";
 
 const Btn = () => {

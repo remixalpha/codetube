@@ -1,27 +1,20 @@
-import React from "react";
-import { FiAlignJustify } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import React,{useState} from "react";
 
-import { BsArrowBarUp } from "react-icons/bs";
+import { Link, } from "react-router-dom";
+
 import { FiSearch } from "react-icons/fi";
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
-import {
-  IoMdNotificationsOutline,
-  IoMdInformationCircleOutline,
-} from "react-icons/io";
+
 
 import Dropdown from "../../../../components/dropdown/index";
 
-import navbarimage from "../../../../assets/img/layout/navbanner.jpeg";
+
 import avatar from "../../../../assets/img/avatars/avatar1.png";
 import logo from "../../../../assets/img/covers/figma.png";
 
-import Minbanner from "../Probanner/minbanner";
-import Menu from "../Menu/profilemenu";
+import ProfileBanner from "../../../../components/Probanner/minbanner";
+import Menu from "../../../../components/Menu/profilemenu";
 
-const Navbar = (props) => {
-  const { onOpenSidenav, brandText } = props;
-  const [darkmode, setDarkmode] = React.useState(false);
+const Navbar = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 ">
@@ -31,7 +24,7 @@ const Navbar = (props) => {
             to="#"
             className="font-bold capitalize hover:text-navy-700 pl-[17rem]"
           >
-            👋 Hey, Rahul
+            👋 Hey,Rahul
           </Link>
         </p>
       </div>
@@ -44,21 +37,27 @@ const Navbar = (props) => {
           <input
             type="text"
             placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             class="block h-full w-full rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400  "
           />
         </div>
-        <span
-          className="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden"
-          onClick={onOpenSidenav}
-        >
-          <FiAlignJustify className="h-5 w-5" />
-        </span>
+
         {/* start Notification */}
         <Dropdown
           button={
-            <p className="cursor-pointer">
-              <IoMdNotificationsOutline className="h-4 w-4 text-gray-600 " />
-            </p>
+            <div className="cursor-pointer relative">
+            <div className="icon">
+              <lord-icon
+                src="https://cdn.lordicon.com/psnhyobz.json"
+                trigger="hover"
+                colors="primary:#707eae"
+                state="hover"
+                style={{ width: "25px", height: "25px" }}
+              />
+            </div>
+    
+          </div>
           }
           children={
             <div className="flex w-[360px] flex-col gap-4 rounded-[20px] bg-lightPrimary p-4 shadow-xl shadow-shadow-500 ">
@@ -66,11 +65,10 @@ const Navbar = (props) => {
                 <p className="text-base font-bold text-navy-700 ">
                   Notification
                 </p>
-
               </div>
-{/* 1st notification */}
-              <button className="flex w-full items-center rounded-[20px] bg-white p-4 ">
-              <div className=" h-[90px] w-[85px] bg-white  py-4  ">
+              {/* 1st notification */}
+              <button className=" Nofitication flex w-full items-center rounded-[20px] bg-white p-4 ">
+                <div className=" h-[90px] w-[85px] bg-white  py-4  ">
                   <img
                     className="flex items-center justify-center w-12 h-12 ml-2 rounded-full object-cover"
                     src={logo}
@@ -88,10 +86,10 @@ const Navbar = (props) => {
                 </div>
               </button>
 
-{/* 2nd notification */}
-              <button className="flex w-full items-center rounded-[20px] bg-white p-4">
-              <div className=" h-[90px] w-[85px] bg-white  py-4  ">
-                <img
+              {/* 2nd notification */}
+              <button className=" Nofitication flex w-full items-center rounded-[20px] bg-white p-4">
+                <div className=" h-[90px] w-[85px] bg-white  py-4  ">
+                  <img
                     className="flex items-center justify-center w-12 h-12 ml-2 rounded-full object-cover"
                     src={logo}
                     // onClick={ProfileButtonClick}
@@ -107,7 +105,6 @@ const Navbar = (props) => {
                   </p>
                 </div>
               </button>
-
             </div>
           }
           classNames={
@@ -117,17 +114,17 @@ const Navbar = (props) => {
         />
 
         {/* start Horizon PRO */}
-        <Dropdown
+        {/* <Dropdown
           button={
             <p className="cursor-pointer">
-              <IoMdInformationCircleOutline className="h-4 w-4 text-gray-600 " />
+              <FiAlignJustify className="h-4 w-4 text-gray-600 " />
             </p>
           }
           children={
             <div className="flex w-[350px] flex-col gap-2 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500">
               <div
                 style={{
-                  backgroundImage: `url(${navbarimage})`,
+                  backgroundImage: `url(${logo})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                 }}
@@ -158,26 +155,9 @@ const Navbar = (props) => {
           }
           classNames={"py-10  top-6 -left-[250px] md:-left-[330px] w-max"}
           animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out"
-        />
+        /> */}
 
-        <div
-          className="cursor-pointer text-gray-600"
-          onClick={() => {
-            if (darkmode) {
-              document.body.classList.remove("dark");
-              setDarkmode(false);
-            } else {
-              document.body.classList.add("dark");
-              setDarkmode(true);
-            }
-          }}
-        >
-          {darkmode ? (
-            <RiSunFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          ) : (
-            <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          )}
-        </div>
+
 
         {/* Profile & Dropdown */}
         <Dropdown
@@ -193,9 +173,8 @@ const Navbar = (props) => {
               <div className="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " />
 
               <div className="mt-3 ml-4 flex flex-col">
-                <Minbanner />
+                <ProfileBanner />
                 <Menu />
-            
               </div>
             </div>
           }

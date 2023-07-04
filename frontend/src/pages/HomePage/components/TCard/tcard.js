@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import avatar from "../../../../assets/img/avatars/avatar4.png";
 import Card from "./Card/index";
 import {
@@ -6,15 +7,22 @@ import {
 } from "react-icons/io";
 
 const Tutor = () => {
+  const navigate = useNavigate();
+
+  const ProfileButtonClick = (event) => {
+    event.preventDefault();
+    navigate("/pro");
+  };
   return (
     <Card
       extra={
-        "items-center  h-[15rem] w-[8rem] -mt-6  -ml-4 mr-5 p-[20px] bg-cover"
+        "items-center  h-[15rem] w-[8rem] -mt-6  -ml-4 mr-5 p-[20px] bg-cover cursor-pointer "
       }
+      onClick={ProfileButtonClick}
     >
       {/* Background and profile */}
       
-      <div className="absolute group-hover:text-xl opacity-0 cursor-pointer right-0 mr-8  group-hover:opacity-100 group-hover:transition-all duration-300  " >
+      <div className="absolute group-hover:text-xl opacity-0 cursor-pointer right-0 mr-8  group-hover:opacity-100 group-hover:transition-all duration-300 ease-in-out " >
         <IoIosMore/>
       </div>
 
@@ -24,12 +32,12 @@ const Tutor = () => {
       </div>
 
       {/* Name and position */}
-      <div className="mt-[7rem]  flex flex-col items-center gap-2 group-hover:m-10 group-hover:ml-16 group-hover:transition-all duration-300 ">
+      <div className="mt-[7rem]  flex flex-col items-center gap-2 group-hover:m-10 group-hover:ml-16 group-hover:transition-all duration-300 ease-in-out ">
         <h4 className="text-md ml-5 font-bold text-navy-700  group-hover:transition-all duration-300 ">UI/UX Design</h4>
         <p className="text-sm  font-normal text-gray-600">Alena</p>
       </div>
       {/* hidden details */}
-      <div className=" absolute flex  bottom-5 mt-6 mb-3 gap-4 md:!gap-10 bg-white rounded-full p-1 opacity-0 transition-all duration-300   group-hover:opacity-100  ">
+      <div className=" absolute flex  bottom-5 mt-6 mb-3 gap-4 md:!gap-10 bg-white rounded-full p-1 opacity-0 transition-all duration-300 ease-in-out  group-hover:opacity-100  ">
         <div className="flex flex-col items-center justify-center">
           <p className="text-1xl font-bold text-navy-700 ">17</p>
           <p className="text-sm font-normal text-gray-600">Posts</p>

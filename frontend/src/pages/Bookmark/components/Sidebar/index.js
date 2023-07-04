@@ -15,22 +15,18 @@ function Sidebar({ expandSidebar }) {
     event.preventDefault();
     navigate("/");
   };
+
   const CourseButtonClick = (event) => {
     event.preventDefault();
     navigate("/courses");
   };
-  const BookmarkButtonClick = (event) => {
-    event.preventDefault();
-    navigate("/bookmark");
-  };
+
 
   const TutorButtonClick = (event) => {
     event.preventDefault();
     navigate("/tut");
   };
 
-
-  
   return (
     <div className="fixed top-5 w-[15rem] h-[56rem] ml-5 rounded-lg bg-white transition-all duration-500 overflow-hidden ">
       
@@ -54,7 +50,7 @@ function Sidebar({ expandSidebar }) {
 
       {/*Home*/}
       <div
-        className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full bg-lightPrimary hover:scale-105"
+        className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full  hover:scale-105  hover:bg-lightPrimary"
         onClick={HomeButtonClick}
       >
         <lord-icon
@@ -67,7 +63,7 @@ function Sidebar({ expandSidebar }) {
       </div>
 
       {/*Courses*/}
-      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-[2rem] hover:scale-105 hover:bg-lightPrimary "
+      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-[2rem]  hover:scale-105 hover:bg-lightPrimary "
       onClick={CourseButtonClick}>
         <lord-icon
           className="cursor-pointer"
@@ -79,8 +75,7 @@ function Sidebar({ expandSidebar }) {
       </div>
 
       {/*Bookmark*/}
-      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full hover:scale-105 hover:bg-lightPrimary"
-      onClick={BookmarkButtonClick}>
+      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full hover:scale-105 bg-lightPrimary">
         <lord-icon
           className="cursor-pointer"
           src="https://cdn.lordicon.com/gigfpovs.json"

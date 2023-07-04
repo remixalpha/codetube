@@ -6,7 +6,7 @@ const Continue = () => {
     <div>
       {/* Card widget */}
 
-      <div className="">
+      <div className="cursor-pointer">
         <Widget
           image={
             <img

@@ -67,7 +67,7 @@ const Widget = ({ image, title, subtitle, point1, point2, point3, point4 }) => {
               />
             </div>
             <div className=" relative right-6 top-10 flex flex-row  gap-2 transition-all duration-300  ">
-              <button class=" opacity-0 rounded-xl border-2 border-blue-500 px-5 py-2 text-sm mb-3 font-medium text-blue-500 transition duration-200 hover:text-white hover:bg-blue-600 active:bg-red-700/5 group-hover:opacity-100">
+              <button class=" opacity-0 rounded-xl border-2 border-blue-500 px-5 py-2 text-sm mb-3 font-medium text-blue-500 transition duration-200 hover:text-white  hover:bg-blue-500 active:bg-red-700/5 group-hover:opacity-100">
                 skip
               </button>
               <button class=" opacity-0 rounded-full bg-blue-500 px-5 py-2 text-sm mb-3 font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700 group-hover:opacity-100">

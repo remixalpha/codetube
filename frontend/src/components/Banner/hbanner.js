@@ -5,6 +5,8 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper";
 
 import Btn1 from "../Btn/btn1";
+
+import { BsArrowUpRightCircle } from "react-icons/bs";
 import img1 from "../../assets/img/Banners/Banner1.png";
 import img2 from "../../assets/img/covers/fsd4.gif";
 import img3 from "../../assets/img/covers/fsd5.gif";
@@ -37,8 +39,8 @@ const Banner = () => {
                 src={img1}
                 alt="Banner 1"
               />
-              <div className="mt-10">
-                <Btn1 />
+              <div className="mt-10 text-[5rem] text-cyan-50 cursor-pointer ">
+                <BsArrowUpRightCircle />
               </div>
             </div>
           </div>

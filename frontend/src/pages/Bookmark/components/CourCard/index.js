@@ -25,10 +25,6 @@ const Card = () => {
     event.preventDefault();
     navigate("/pro");
   };
-  const ContentButtonClick = (event) => {
-    event.preventDefault();
-    navigate("/content");
-  };
   return (
     <div className="group">
       <div className="box rounded-[2rem] h-[30rem] w-96 bg-white p-4 transition-all duration-300 ease-in-out  hover:cursor-pointer hover:border ">
@@ -65,8 +61,7 @@ const Card = () => {
               <h3 className="text-gray-800 ">41 Videos</h3>
             </div>
 
-            <div className=" relative top-6 left-[12rem] text-[3rem]"
-            onClick={ContentButtonClick}>
+            <div className=" relative top-6 left-[12rem] text-[3rem]">
               <BsArrowUpRightCircle />
             </div>
             <div className=" relative  opacity-0 group-hover:opacity-100 bottom-[25rem] left-[13rem] transition-all duration-300 ">
@@ -97,7 +92,7 @@ const Card = () => {
             />
 
             <div className="">
-              <h3 className="title text-2xl font-bold capitalize ">.NET</h3>
+              <h3 className="title text-2xl font-bold capitalize ">HTML</h3>
               <h4 className="text-gray-800">John deo</h4>
               <span className="text-gray-700">21-03-2022</span>
               <div className="mt-5 space-x-16 ">
@@ -130,7 +125,7 @@ const Card = () => {
             />
 
             <div className="">
-              <h3 className="title text-2xl font-bold capitalize ">Mongo DB</h3>
+              <h3 className="title text-2xl font-bold capitalize ">HTML</h3>
               <h4 className="text-gray-800">John deo</h4>
               <span className="text-gray-700">21-03-2022</span>
               <div className="mt-5 space-x-16 ">
@@ -163,7 +158,7 @@ const Card = () => {
             />
 
             <div className="">
-              <h3 className="title text-2xl font-bold capitalize ">Angular</h3>
+              <h3 className="title text-2xl font-bold capitalize ">HTML</h3>
               <h4 className="text-gray-800">John deo</h4>
               <span className="text-gray-700">21-03-2022</span>
               <div className="mt-5 space-x-16 ">

@@ -15,7 +15,10 @@ function Sidebar({ expandSidebar }) {
     event.preventDefault();
     navigate("/");
   };
-
+  const BookmarkButtonClick = (event) => {
+    event.preventDefault();
+    navigate("/bookmark");
+  };
   const TutorButtonClick = (event) => {
     event.preventDefault();
     navigate("/tut");
@@ -53,7 +56,7 @@ function Sidebar({ expandSidebar }) {
           trigger="hover"
           style={{ width: "22px", height: "22px" }}
         />
-        <h1 className="font-bold text-navy-700 cursor-pointer">Home</h1>
+        <h1 className="font-bold text-navy-700 cursor-pointer">Explore</h1>
       </div>
 
       {/*Courses*/}
@@ -68,7 +71,8 @@ function Sidebar({ expandSidebar }) {
       </div>
 
       {/*Bookmark*/}
-      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full hover:scale-105 hover:bg-lightPrimary">
+      <div className="w-4/5 h-15  flex items-center justify-start gap-3 p-5 cursor-pointer rounded-full hover:scale-105 hover:bg-lightPrimary"
+      onClick={BookmarkButtonClick}>
         <lord-icon
           className="cursor-pointer"
           src="https://cdn.lordicon.com/gigfpovs.json"
