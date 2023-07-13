@@ -77,34 +77,16 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                   />
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
-                  <p className="mb-1 text-left text-base font-bold text-gray-900 ">
-                    New Update: Horizon UI Dashboard PRO
-                  </p>
+                  <h1 className="mb-1 text-left text-base font-bold text-gray-900 ">
+                  Elon Musk
+                  </h1>
                   <p className="font-base text-left text-xs text-gray-900 ">
-                    A new update for your downloaded item is available!
+                    A new Course has been released!
                   </p>
                 </div>
               </button>
 
-              {/* 2nd notification */}
-              <button className=" Nofitication flex w-full items-center rounded-[20px] bg-white p-4">
-                <div className=" h-[90px] w-[85px] bg-white  py-4  ">
-                  <img
-                    className="flex items-center justify-center w-12 h-12 ml-2 rounded-full object-cover"
-                    src={logo}
-                    // onClick={ProfileButtonClick}
-                    alt=""
-                  />
-                </div>
-                <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
-                  <p className="mb-1 text-left text-base font-bold text-gray-900 ">
-                    New Update: Horizon UI Dashboard PRO
-                  </p>
-                  <p className="font-base text-left text-xs text-gray-900 ">
-                    A new update for your downloaded item is available!
-                  </p>
-                </div>
-              </button>
+
             </div>
           }
           classNames={
@@ -113,51 +95,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           animation="origin-[80%_0%] transition-all duration-300 ease-in-out"
         />
 
-        {/* start Horizon PRO */}
-        {/* <Dropdown
-          button={
-            <p className="cursor-pointer">
-              <FiAlignJustify className="h-4 w-4 text-gray-600 " />
-            </p>
-          }
-          children={
-            <div className="flex w-[350px] flex-col gap-2 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500">
-              <div
-                style={{
-                  backgroundImage: `url(${logo})`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                }}
-                className="mb-2 aspect-video w-full rounded-lg"
-              />
-              <a
-                target="blank"
-                href="https://horizon-ui.com/pro?ref=live-free-tailwind-react"
-                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 "
-              >
-                Buy Codetube PRO
-              </a>
-              <a
-                target="blank"
-                href="https://horizon-ui.com/docs-tailwind/docs/react/installation?ref=live-free-tailwind-react"
-                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl border py-[11px] font-bold text-navy-700 transition duration-200 hover:bg-gray-200 hover:text-navy-700 "
-              >
-                See Documentation
-              </a>
-              <a
-                target="blank"
-                href="https://horizon-ui.com/?ref=live-free-tailwind-react"
-                className="hover:bg-black px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 "
-              >
-                Try Codetube Free
-              </a>
-            </div>
-          }
-          classNames={"py-10  top-6 -left-[250px] md:-left-[330px] w-max"}
-          animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out"
-        /> */}
-
-
+        
 
         {/* Profile & Dropdown */}
         <Dropdown

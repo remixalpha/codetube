@@ -112,6 +112,7 @@ export const theme = {
       "3xl": "14px 17px 40px 4px",
       inset: "inset 0px 18px 22px",
       darkinset: "0px 4px 4px inset",
+      bottom: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
     },
     borderRadius: {
       primary: "20px",

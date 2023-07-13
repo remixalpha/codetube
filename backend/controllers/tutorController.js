@@ -1,9 +1,13 @@
-const Tutor = require('../models/tutorModel');
+import tutorModel from '../models/tutorModel';
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+require("dotenv").config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Get all tutors
 const getAllTutors = async (req, res) => {
   try {
-    const tutors = await Tutor.find();
+    const tutors = await tutorModel.find();
     res.json(tutors);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
@@ -12,9 +16,9 @@ const getAllTutors = async (req, res) => {
 
 // Get a specific tutor by ID
 const getTutorById = async (req, res) => {
-  const { tutorId } = req.params;
+  const  tutorId  = req.params.id;
   try {
-    const tutor = await Tutor.findById(tutorId);
+    const tutor = await tutorModel.findById(tutorId);
     if (!tutor) {
       return res.status(404).json({ error: 'Tutor not found' });
     }
@@ -24,26 +28,71 @@ const getTutorById = async (req, res) => {
   }
 };
 
+
+
+// Login tutor
+const loginTutor =async (req,res,next) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if the user exists
+    const tutor = await tutorModel.findOne({ email });
+    if (!tutor) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // check if password is correct
+    const passwordMatch = await bcrypt.compare(password, tutor.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign({ tutorId: tutor._id }, JWT_SECRET);
+
+    res.status(200).json({
+      status: "success",
+      message: "logged in successfully",
+      token,
+      doc: tutor._id,
+    });
+  } catch (error) {
+    res.status(500).json({ status: false, msg: "catch err" });
+  }
+};
+
+
+
 // Create a new tutor
 const createTutor = async (req, res) => {
-  const { name, expertise } = req.body;
-  try {
-    const tutor = new Tutor({ name, expertise });
-    await tutor.save();
-    res.status(201).json(tutor);
+  try{
+  const { name,category,email,password } = req.body;
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const newTutor = await tutorModel.create({ name, category ,email,password:hashedPassword });
+  
+    res.status(201).json({
+      status: true,
+      message: "Registered successfully",
+      data: newTutor,
+    });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
 
+
+
+
 // Update an existing tutor
 const updateTutor = async (req, res) => {
-  const { tutorId } = req.params;
-  const { name, expertise } = req.body;
+  const  tutorId  = req.params.id;
+  const { name, category,email,password } = req.body;
   try {
-    const tutor = await Tutor.findByIdAndUpdate(
+    const tutor = await tutorModel.findByIdAndUpdate(
       tutorId,
-      { name, expertise },
+      { name, category,email,password },
       { new: true }
     );
     if (!tutor) {
@@ -57,9 +106,9 @@ const updateTutor = async (req, res) => {
 
 // Delete a tutor
 const deleteTutor = async (req, res) => {
-  const { tutorId } = req.params;
+  const  tutorId  = req.params.id;
   try {
-    const tutor = await Tutor.findByIdAndDelete(tutorId);
+    const tutor = await tutorModel.findByIdAndDelete(tutorId);
     if (!tutor) {
       return res.status(404).json({ error: 'Tutor not found' });
     }
@@ -73,7 +122,7 @@ const deleteTutor = async (req, res) => {
 const followTutor = async (req, res) => {
   try {
     const tutorId = req.params.id;
-    const tutor = await Tutor.findByIdAndUpdate(
+    const tutor = await tutorModel.findByIdAndUpdate(
       tutorId,
       { $inc: { followersCount: 1 } },
       { new: true }
@@ -88,7 +137,7 @@ const followTutor = async (req, res) => {
 const unfollowTutor = async (req, res) => {
   try {
     const tutorId = req.params.id;
-    const tutor = await Tutor.findByIdAndUpdate(
+    const tutor = await tutorModel.findByIdAndUpdate(
       tutorId,
       { $inc: { followersCount: -1 } },
       { new: true }
@@ -102,6 +151,7 @@ const unfollowTutor = async (req, res) => {
 module.exports = {
   getAllTutors,
   getTutorById,
+  loginTutor,
   createTutor,
   updateTutor,
   deleteTutor,

@@ -21,6 +21,23 @@ const courseSchema = new Schema({
     type: Date,
     required: true,
   },
+  coverImage: {
+    type: String,
+    required: true,
+    default: function () {
+      return getCategoryCoverImage(this.category);
+    },
+  },
+  tutor: {
+    avatar: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 const Course = model('Course', courseSchema);

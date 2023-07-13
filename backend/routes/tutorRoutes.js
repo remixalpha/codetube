@@ -1,24 +1,38 @@
 import { Router } from 'express';
 const router = Router();
-import { getAllTutors, getTutorById, createTutor, updateTutor, deleteTutor, followTutor, unfollowTutor } from '../controllers/tutorController';
+import {
+  getAllTutors,
+  getTutorById,
+  createTutor,
+  loginTutor,
+  updateTutor,
+  deleteTutor,
+  followTutor,
+  unfollowTutor,
+} from '../controllers/tutorController';
+// GET /tutors/:id
+router.get('/:id', getTutorById);
 
 // GET /tutors
 router.get('/', getAllTutors);
 
-// GET /tutors/:id
-router.get('/:id', getTutorById);
 
-// POST /tutors
-router.post('/', createTutor);
+// POST /tutors/register
+router.post('/register', createTutor);
 
-// PUT /tutors/:id
-router.put('/:id', updateTutor);
+// POST /tutors/login
+router.post('/login', loginTutor);
 
-// DELETE /tutors/:id
-router.delete('/:id', deleteTutor);
+// PUT /tutors/:id/update
+router.put('/:id/update', updateTutor);
 
+// DELETE /tutors/:id/delete
+router.delete('/:id/delete', deleteTutor);
+
+// PUT /tutors/:id/follow
 router.put('/:id/follow', followTutor);
 
+// PUT /tutors/:id/unfollow
 router.put('/:id/unfollow', unfollowTutor);
 
 export default router;

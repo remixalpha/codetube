@@ -15,7 +15,11 @@ export const getTutorById = (tutorId) => {
 // Create a new tutor
 
 export const createTutor = (tutorData) => {
-  return axios.post('/api/tutors', tutorData);
+  return axios.post("/api/tutors/register", tutorData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 // Update an existing tutor

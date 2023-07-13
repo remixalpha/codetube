@@ -25,6 +25,7 @@
     "@babel/polyfill": "^7.12.1",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.22.7",
     "@babel/register": "^7.22.5",
+    "@craco/craco": "^7.1.0",
     "nodemon": "^2.0.22"
   }
 }

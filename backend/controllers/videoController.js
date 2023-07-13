@@ -1,4 +1,6 @@
 import Video from '../models/videoModel';
+import Tutor from '../models/tutorModel';
+
 
 // Get all videos by course
 export async function getAllVideosByCourse(req, res) {
@@ -30,6 +32,12 @@ export async function createVideo(req, res) {
   try {
     const { title, courseId, views, uploadedAt } = req.body;
     const video = await Video.create({ title, courseId, views, uploadedAt });
+    const tutor = await Tutor.findById(tutorId);
+    if (!tutor) {
+      return res.status(404).json({ message: 'Tutor not found' });
+    }
+    await tutor.uploadVideo();
+
     res.status(201).json(video);
   } catch (error) {
     res.status(500).json({ message: 'Failed to create video' });

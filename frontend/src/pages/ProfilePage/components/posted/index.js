@@ -4,7 +4,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import Card from "../Card/index";
 import Courses from "../CourCard/index";
 
-const Videos = () => {
+const Posts = () => {
   return (
     <Card extra={"w-full p-4 h-full"}>
       <div className="mb-8 w-full p-5 flex flex-row ">
@@ -24,4 +24,4 @@ const Videos = () => {
   );
 };
 
-export default Videos;
+export default Posts;
