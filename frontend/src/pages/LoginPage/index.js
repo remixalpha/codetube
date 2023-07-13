@@ -20,34 +20,41 @@ export default function Registration() {
   //   setIsChecked(event.target.checked);
   // };
 
-  const handleLogin = async () => {
-    // e.preventDefault();
 
-    // if (!isFormValid()) {
-    //   return;
-    // }
+const handleLogin = (event) => {
+  event.preventDefault();
+  navigate("/home");
+};
 
-    try {
-      await axios
-        .post(`${URL}/tutors/login`, {
-          email: loginEmail,
-          password: loginPassword,
-        })
-        .then((res) => {
-          console.log({res:res})
-          if (res?.data?.token) {
-            window.localStorage.setItem("tutor-auth-key", res.data.token);
-            window.localStorage.setItem("tutor", res.data.doc);
-            navigate("/home");
-            window.location.reload();
-          }
-          setErrors("Invalid credentials");
-        });
-    } catch (error) {
-      console.log({ error: error });
-      setErrors("Invalid credentials");
-    }
-  };
+
+
+
+
+
+  // const handleLogin = async () => {
+
+
+  //   try {
+  //     await axios
+  //       .post(`${URL}/tutors/login`, {
+  //         email: loginEmail,
+  //         password: loginPassword,
+  //       })
+  //       .then((res) => {
+  //         console.log({res:res})
+  //         if (res?.data?.token) {
+  //           window.localStorage.setItem("tutor-auth-key", res.data.token);
+  //           window.localStorage.setItem("tutor", res.data.doc);
+  //           navigate("/home");
+  //           window.location.reload();
+  //         }
+  //         setErrors("Invalid credentials");
+  //       });
+  //   } catch (error) {
+  //     console.log({ error: error });
+  //     setErrors("Invalid credentials");
+  //   }
+  // };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -183,8 +190,8 @@ export default function Registration() {
         <button
               className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600"
               
-              onClick={() => handleLogin()}
-  
+              // onClick={() => handleLogin()}
+  onClick={handleLogin}
             >
               Login
             </button>
