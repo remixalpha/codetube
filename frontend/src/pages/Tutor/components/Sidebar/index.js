@@ -13,7 +13,7 @@ function Sidebar({ expandSidebar }) {
 
   const HomeButtonClick = (event) => {
     event.preventDefault();
-    navigate("/");
+    navigate("/home");
   };
 
   const BookmarkButtonClick = (event) => {

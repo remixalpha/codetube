@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { resolvePath, useNavigate,Link } from "react-router-dom";
 import Card from "./components/Card/index";
 import avatar from "../../assets/img/avatars/avatarSimmmple.png";
 import illustration from "../../assets/img/illustrions/illu2.png";
 
 export default function Registration() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const URL = "http://localhost:5000";
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
@@ -21,77 +23,39 @@ export default function Registration() {
     setShowPassword(!showPassword);
   };
 
-
+  const [formValues, setFormValues] = useState({
+    name: "",
+    category: "",
+    email: "",
+    password: ""
+  });
+  
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+  };
   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const errors = {};
-
-    if (!name) {
-      errors.name = " Name is required";
-    }
-
-    if (!category) {
-      errors.category = "category is required";
-    }
-
-    if (!email) {
-      errors.email = "Email is required";
-    }
-
-    if (!password) {
-      errors.password = "Password is required";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setErrors(errors);
-      return;
-    }
-
-    const tutorData = new FormData();
-    tutorData.append("name", name);
-    tutorData.append("category", category);
-    tutorData.append("email", email);
-    tutorData.append("password", password);
-
     try {
-      const response = await axios.post(
-        "/api/tutors/register",
-        tutorData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response.data);
-      setSuccess("Registration Successful");
-      setName("");
-      setCategory("");
-      setEmail("");
-      setPassword("");
+      const response = await axios.post(`${URL}/tutors/register`,formValues);
+   
+      if (response.data.status === true) {
+        setSuccess("Registration successful."); 
+        alert("Registration successful ")
+        navigate("/");
+        window.location.reload();
+      } else {
+        alert("Retry after some time");
+      }
+      
+
     } catch (error) {
       console.log(error);
       setErrors("Registration failed. Please try again later.");
     }
   };
 
-  const handleNameChange = async (e) => {
-    setName(e.target.value);
-  };
-
-  const handleCategoryChange = async (e) => {
-    setCategory(e.target.value);
-  };
-
-  const handleEmailChange = async (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = async (e) => {
-    setPassword(e.target.value);
-  };
 
   return (
     <div className="flex flex-col relative top-0 items-center  min-h-screen pt-6 sm:justify-center sm:pt-0 bg-lightPrimary">
@@ -133,10 +97,9 @@ export default function Registration() {
                 type="text"
                 autoComplete="given-name"
                 variant="outlined"
-                value={name}
-                onChange={handleNameChange}
-                error={!!errors.name}
-    
+                value={formValues.name}
+                onChange={handleChange}
+                required
                 className="block w-full pl-4  h-[2rem] mt-1 border bg-white rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
@@ -150,14 +113,13 @@ export default function Registration() {
             </label>
             <div className="flex flex-col items-start">
               <input
-                id="demo-simple-select"
+                id="category"
                 name="category"
                 type="text"
                 autoComplete="given-category"
-                value={category}
-                onChange={handleCategoryChange}
-                error={!!errors.category}
-      
+                value={formValues.category}
+                onChange={handleChange}
+                required
                 className="block w-full pl-4  h-[2rem] mt-1 border bg-white rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
@@ -172,14 +134,13 @@ export default function Registration() {
             </label>
             <div className="flex flex-col items-start">
               <input
-                id="outlined-email-input"
+                id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
-                value={email}
-                onChange={handleEmailChange}
-                error={!!errors.email}
-         
+                value={formValues.email}
+                onChange={handleChange}
+                required
                 className="block w-full pl-4 h-[2rem] mt-1 bg-white border   rounded-md shadow-sm "
               />
             </div>
@@ -198,10 +159,9 @@ export default function Registration() {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
-                value={password}
-                onChange={handlePasswordChange}
-                error={!!errors.password}
-           
+                value={formValues.password}
+                onChange={handleChange}
+                required
                 className="block w-full h-[2rem] pl-4 mt-1 border bg-white rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  "
               />
             </div>
@@ -227,7 +187,7 @@ export default function Registration() {
 
           <div className="flex items-center mt-4">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600"
-            >
+          >
               Register
             </button>
           </div>

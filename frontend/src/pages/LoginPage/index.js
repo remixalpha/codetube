@@ -1,15 +1,83 @@
 import React, { useState, useEffect } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "./components/Card/index";
 import avatar from "../../assets/img/avatars/avatarSimmmple.png";
 import illustration from "../../assets/img/illustrions/illu2.png";
-
-
+import { loginTutor } from "../../utils/api/tutorApi";
 export default function Registration() {
+  const [loginEmail, setEmail] = useState("");
+  const [loginPassword, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState("");
+  const [response, setResponse] = useState([])
+  // const [isChecked, setIsChecked] = useState(false);
+
   const navigate = useNavigate();
-  const HomeButtonClick = (event) => {
-    event.preventDefault();
-    navigate("/home");
+  const URL = "http://localhost:5000";
+
+  // const handleCheckboxChange = (event) => {
+  //   setIsChecked(event.target.checked);
+  // };
+
+  const handleLogin = async () => {
+    // e.preventDefault();
+
+    // if (!isFormValid()) {
+    //   return;
+    // }
+
+    try {
+      await axios
+        .post(`${URL}/tutors/login`, {
+          email: loginEmail,
+          password: loginPassword,
+        })
+        .then((res) => {
+          console.log({res:res})
+          if (res?.data?.token) {
+            window.localStorage.setItem("tutor-auth-key", res.data.token);
+            window.localStorage.setItem("tutor", res.data.doc);
+            navigate("/home");
+            window.location.reload();
+          }
+          setErrors("Invalid credentials");
+        });
+    } catch (error) {
+      console.log({ error: error });
+      setErrors("Invalid credentials");
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
+  const isFormValid = () => {
+    // let errors = {};
+    let isValid = true;
+
+    if (!loginEmail) {
+      errors = "Email is required";
+      isValid = false;
+    }
+
+    if (!loginPassword) {
+      errors = "Password is required";
+      isValid = false;
+    }
+
+    setErrors(errors);
+    return isValid;
   };
 
   return (
@@ -37,7 +105,7 @@ export default function Registration() {
             elements on Dri{" "}
           </p>
         </div>
-        <form>
+        <form >
           <div className="mt-4">
             <label
               htmlFor="email"
@@ -47,10 +115,14 @@ export default function Registration() {
             </label>
             <div className="flex flex-col items-start">
               <input
+                id="email"
                 type="email"
                 name="email"
-                className="block w-full  h-[2rem] mt-1 bg-white border   rounded-md shadow-sm "
+                value={loginEmail}
+                onChange={handleEmailChange}
+                className="block w-full  h-[2rem] mt-1 pl-4 bg-white border   rounded-md shadow-sm "
               />
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
           </div>
           <div className="mt-4">
@@ -62,25 +134,60 @@ export default function Registration() {
             </label>
             <div className="flex flex-col items-start">
               <input
-                type="password"
+                id="password"
                 name="password"
-                className="block w-full h-[2rem] mt-1 border bg-white rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                type={showPassword ? "text" : "password"}
+                value={loginPassword}
+                onChange={handlePasswordChange}
+                className="block w-full h-[2rem] mt-1 pl-4 border bg-white rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
+              <button
+                type="button"
+                className="absolute top-0 pb-[5rem] right-20 h-full  text-gray-500 hover:text-gray-700 flex items-center justify-center"
+              >
+                {showPassword ? (
+                  <span 
+                  className="material-symbols-outlined cursor-pointer"
+                  onClick={togglePasswordVisibility}>
+                    visibility_off
+                  </span>
+                ) : (
+                  <span className="material-symbols-outlined cursor-pointer"
+                  onClick={togglePasswordVisibility}>
+                    visibility</span>
+                )}
+              </button>
             </div>
           </div>
           <div className="flex flex-row gap-40 mt-3 ">
-
+            {/* {/* <label className="flex items-center">
+              <input
+                type="checkbox"
+                className="form-checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
+              <span className="text-xs text-gray-400 ml-2">
+                Keep me signed in
+              </span> 
+            </label> */}
             <a href="#" className="text-xs text-navy-700 hover:underline">
               Forget Password?
             </a>
+            {errors && <p className="text-red-500 text-xs">{errors}</p>}
           </div>
           <div className="flex items-center mt-4">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600"
-            onClick={HomeButtonClick}>
-              Login
-            </button>
+ 
           </div>
         </form>
+        <button
+              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600"
+              
+              onClick={() => handleLogin()}
+  
+            >
+              Login
+            </button>
 
         <div className="mt-4 text-grey-600">
           Don't have an account yet ?{" "}

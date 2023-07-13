@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Sidebar from "../HomePage/components/Sidebar/index";
-import Banner from "./components/Probanner/index.js";
+import Banner from "./components/Probanner/index";
 import Projects from "./components/Procard";
 import Posts from "./components/posted";
 import Card from "./components/Card/index";

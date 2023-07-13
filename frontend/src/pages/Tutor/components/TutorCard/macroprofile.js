@@ -17,7 +17,7 @@ const Minprofile = () => {
 
         <div className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover">
           <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 ">
-            <img className="h-full w-full rounded-full" src={avatar1} alt="" />
+            <img className="h-full w-full rounded-full object-cover " src={avatar1} alt="" />
           </div>
         </div>
 

@@ -14,11 +14,15 @@ const app = express();
 
 // Connect to MongoDB
 // Connect to the database
-Mongoose.connect("mongodb://127.0.0.1:27017/codetube", {
+// Mongoose.connect("mongodb://127.0.0.1:27017/codetube", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+Mongoose.connect("mongodb+srv://alpha:123@cluster0.yyqi39e.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+// mongodb+srv://alpha:<password>@cluster0.yyqi39e.mongodb.net/
 const db = Mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", function () {

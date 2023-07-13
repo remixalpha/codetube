@@ -1,4 +1,5 @@
 import axios from 'axios';
+const URL = "http://localhost:5000";
 
 // Fetch all tutors
 
@@ -15,11 +16,14 @@ export const getTutorById = (tutorId) => {
 // Create a new tutor
 
 export const createTutor = (tutorData) => {
-  return axios.post("/api/tutors/register", tutorData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  return axios.post("/api/tutors/register", tutorData);
+
+};
+// Login
+
+export const loginTutor = async(tutorData) => {
+  return  await axios.post(`${URL}/tutors/login`,tutorData);
+
 };
 
 // Update an existing tutor

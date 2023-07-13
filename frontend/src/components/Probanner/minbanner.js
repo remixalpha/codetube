@@ -16,14 +16,14 @@ const Minprofile = () => {
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 ">
-          <img className="h-full w-full rounded-full" src={avatar} alt="" />
+          <img className="h-full w-full rounded-full object-cover " src={avatar} alt="" />
         </div>
       </div>
 
       {/* Name and position */}
       <div className="mt-[5rem] flex flex-col items-center">
         <h4 className="text-xl font-bold text-navy-700 ">
-        Adela
+        john
         </h4>
         <p className="text-sm  ml-5 font-normal text-gray-600">Product Manager</p>
       </div>

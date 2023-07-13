@@ -101,7 +101,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
         <Dropdown
           button={
             <img
-              className="h-10 w-10 rounded-full"
+              className="h-10 w-10 rounded-full object-cover "
               src={avatar}
               alt="Elon Musk"
             />

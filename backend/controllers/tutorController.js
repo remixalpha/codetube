@@ -51,7 +51,8 @@ const loginTutor =async (req,res,next) => {
     const token = jwt.sign({ tutorId: tutor._id }, JWT_SECRET);
 
     res.status(200).json({
-      status: "success",
+      status: true,
+
       message: "logged in successfully",
       token,
       doc: tutor._id,
@@ -74,6 +75,7 @@ const createTutor = async (req, res) => {
   
     res.status(201).json({
       status: true,
+      success:true,
       message: "Registered successfully",
       data: newTutor,
     });
