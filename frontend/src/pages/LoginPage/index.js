@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import Card from "./components/Card/index";
 import avatar from "../../assets/img/avatars/avatarSimmmple.png";
 import illustration from "../../assets/img/illustrions/illu2.png";
 
 
 export default function Registration() {
-
-
+  const navigate = useNavigate();
+  const HomeButtonClick = (event) => {
+    event.preventDefault();
+    navigate("/home");
+  };
 
   return (
     <div className="flex flex-col relative top-0 items-center  min-h-screen pt-6 sm:justify-center sm:pt-0 bg-lightPrimary">
@@ -72,7 +75,8 @@ export default function Registration() {
             </a>
           </div>
           <div className="flex items-center mt-4">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600">
+            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-navy-700 rounded-md hover:bg-navy-600 focus:outline-none focus:bg-navy-600"
+            onClick={HomeButtonClick}>
               Login
             </button>
           </div>
