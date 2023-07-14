@@ -34,28 +34,32 @@ export default function Registration() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const response = await axios.post(`${URL}/tutors/register`,formValues);
+  //   try {
+  //     const response = await axios.post(`${URL}/tutors/register`,formValues);
    
-      if (response.data.status === true) {
-        setSuccess("Registration successful."); 
-        alert("Registration successful ")
-        navigate("/");
-        window.location.reload();
-      } else {
-        alert("Retry after some time");
-      }
+  //     if (response.data.status === true) {
+  //       setSuccess("Registration successful."); 
+  //       alert("Registration successful ")
+  //       navigate("/");
+  //       window.location.reload();
+  //     } else {
+  //       alert("Retry after some time");
+  //     }
       
 
-    } catch (error) {
-      console.log(error);
-      setErrors("Registration failed. Please try again later.");
-    }
-  };
+  //   } catch (error) {
+  //     console.log(error);
+  //     setErrors("Registration failed. Please try again later.");
+  //   }
+  // };
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    navigate("/home");
+  };
 
   return (
     <div className="flex flex-col relative top-0 items-center  min-h-screen pt-6 sm:justify-center sm:pt-0 bg-lightPrimary">
@@ -82,7 +86,7 @@ export default function Registration() {
             elements on Dri{" "}
           </p>
         </div>
-        <form  onSubmit={handleSubmit} method="POST">
+        <form  onSubmit={handleLogin} method="POST">
           <div>
             <label
               htmlFor="name"

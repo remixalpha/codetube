@@ -14,14 +14,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/login" element={<Login/>} />
-        <Route exact path="/registration" element={<Registration/>} />
+        <Route  path="/login" element={<Login/>} />
+        <Route  path="/registration" element={<Registration/>} />
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/courses" element={<Courses/>} />
-        <Route exact path="/bookmark" element={<Bookmark/>} />
-        <Route exact path="/pro" element={<Profile />} />
-        <Route exact path="/tut" element={<Tutor />} />
-        <Route exact path="/content" element={<Content />} />
+        <Route  path="/courses" element={<Courses/>} />
+        <Route  path="/bookmark" element={<Bookmark/>} />
+        <Route  path="/pro" element={<Profile />} />
+        <Route  path="/tut" element={<Tutor />} />
+        <Route  path="/content" element={<Content />} />
       </Routes>
     </BrowserRouter>
   );
